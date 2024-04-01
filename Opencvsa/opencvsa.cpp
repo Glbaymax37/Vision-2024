@@ -79,6 +79,10 @@ int b, g, r;
 int lowhue1 = 115, smin1 = 36, vmin1 = 13;
 int upperhue1 = 129 ,smax1 = 255, vmax1 = 255;
 
+int lowhuepadi = 164, sminpadi = 105, vminpadi = 0;
+int upperhuepadi = 178 ,smaxpadi = 255, vmaxpadi = 255;
+
+
 int lowhue2 = 169, smin2 = 75, vmin2 = 132;
 int upperhue2 = 183, smax2 = 255, vmax2 = 255;
 
@@ -91,6 +95,13 @@ int value_bawah;
 int nilai_atas;
 int saturasi_atas;
 int value_atas;
+
+
+
+int smin;
+int smax;
+int vmin;
+int vmax;
 
 
     
@@ -116,28 +127,9 @@ void padi(){
         Mat hsv;
         cvtColor(frame,hsv,COLOR_BGR2HSV);
 
-        if (keyVal == 49){
-            nilai_bawah = lowhue1;
-            saturasi_bawah = smin1;
-            value_bawah = vmin1;
 
-            nilai_atas = upperhue1;
-            saturasi_atas = smax1;
-            value_atas = vmax1;
-        }
-        else if(keyVal == 50){
-            nilai_bawah = lowhue2;
-            saturasi_bawah = smin2;
-            value_bawah = vmin2;
-
-            nilai_atas = upperhue2;
-            saturasi_atas = smax2;
-            value_atas = vmax2;
-        }
-
-
-        Scalar lower(nilai_bawah, saturasi_bawah, value_bawah);
-		Scalar upper(nilai_atas, saturasi_atas, value_atas);
+        Scalar lower(lowhuepadi, sminpadi, vminpadi);
+		Scalar upper(upperhuepadi, smaxpadi, vmaxpadi);
      
 
         int minDistance = 500;
@@ -516,10 +508,10 @@ int main(int argc, char** argv) {
 
 
     namedWindow("Trackbars", (640, 200));
-	    // createTrackbar("Sat Min", "Trackbars", &smin, 255);
-	    // createTrackbar("Sat Max", "Trackbars", &smax, 255);
-	    // createTrackbar("Val Min", "Trackbars", &vmin, 255);
-	    // createTrackbar("Val Max", "Trackbars", &vmax, 255);
+	    createTrackbar("Sat Min", "Trackbars", &smin, 255);
+	    createTrackbar("Sat Max", "Trackbars", &smax, 255);
+	    createTrackbar("Val Min", "Trackbars", &vmin, 255);
+	    createTrackbar("Val Max", "Trackbars", &vmax, 255);
         createTrackbar("Konsanta 1", "Trackbars", &konstanta1, 255);
 	    createTrackbar("Konstanta 2", "Trackbars", &konstanta2, 255);
 
